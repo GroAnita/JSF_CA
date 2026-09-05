@@ -15,7 +15,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 <div className="container flex flex-1 items-center justify-center mt-4">
-                    <p className="text-sm">&copy; 2024 The Webshop. All rights reserved.</p>
+                    <p className="text-sm">&copy; 2024 The Everything shop. All rights reserved.</p>
                 </div>
 
             </header>
