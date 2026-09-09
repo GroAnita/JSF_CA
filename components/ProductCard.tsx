@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { Product } from "../types/product";
 import { ShoppingCart, PlusCircleIcon, MinusCircleIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
     return (
+      
         <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full">
+              <Link href={`/products/${product.id}`}>
             <Image 
             src={product.image.url}
             alt={product.image.alt || product.title}
@@ -20,6 +23,7 @@ export default function ProductCard({ product, priority = false }: { product: Pr
                 <p className="text-amber-500 text-sm mt-1">Discounted Price NOK{product.discountedPrice}</p>
             
             </div>
+            </Link>
             <div className="flex mt-auto mx-auto mb-0.5  text-blue-800">
             < PlusCircleIcon className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1" />
             <form className="inline-block"> 
