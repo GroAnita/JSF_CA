@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 //import Cart from "./cart/page";
 import { CartProvider } from "@/context/CartContext";
 
-
 const heading = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -29,14 +28,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${heading.variable} ${body.variable} h-full antialiased`}
     >
-     
       <body className="min-h-full flex flex-col">
         <CartProvider>
-         <Header />
-        {children}
-        <Footer />
+          <Header />
+
+          {children}
+          <Footer />
         </CartProvider>
-        </body>
+      </body>
     </html>
   );
 }
