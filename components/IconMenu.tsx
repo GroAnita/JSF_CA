@@ -1,17 +1,29 @@
 "use client";
-import { ShoppingCart, CircleUserRound, Sun, Home } from "lucide-react";
+import { ShoppingCart, MessageSquare, Sun, Home, Menu } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import { useState } from "react";
+import MenuModal from "./MenuModal";
 
 export default function IconMenu() {
   const { items } = useCart();
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="flex flex-row mx-auto mt-2 justify-center">
-      <div className="flex mx-auto items-center mt-2 justify-center mr-2">
-        <Home className="w-6 h-6 text-gray-800 mx-1" />
-      </div>
+      <Link href="/">
+        <div className="hidden md:flex group relative  mx-auto items-center mt-2 justify-center mr-2">
+          <Home className="w-6 h-6 text-gray-800 mx-1" />
+          <span
+            className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded
+               bg-gray-800 px-2 py-1 text-xs text-white opacity-0 pointer-events-none
+               transition-opacity group-hover:opacity-100"
+          >
+            Home
+          </span>
+        </div>
+      </Link>
       <div className="flex mx-auto items-center mt-2 justify-center mr-2">
         <Link href="/cart">
           <div className="relative">
@@ -24,11 +36,41 @@ export default function IconMenu() {
           </div>
         </Link>
       </div>
-      <div className="flex mx-auto items-center mt-2 justify-center mr-2 ">
-        <CircleUserRound className="w-6 h-6 text-gray-800 mx-1 " />
+      <Link href="/contact">
+        <div className="hidden md:flex group relative mx-auto items-center mt-2 justify-center mr-2">
+          <MessageSquare className="w-6 h-6 text-gray-800 mx-1" />
+          <span
+            className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded
+               bg-gray-800 px-2 py-1 text-xs text-white opacity-0 pointer-events-none
+               transition-opacity group-hover:opacity-100"
+          >
+            Contact us
+          </span>
+        </div>
+      </Link>
+      <div className="group relative flex mx-auto items-center mt-2 justify-center mr-2">
+        <Menu
+          onClick={() => setIsMenuOpen(true)}
+          className="w-6 h-6 text-gray-800 mx-1 md:hidden "
+        />
+        {isMenuOpen && <MenuModal onClose={() => setIsMenuOpen(false)} />}
+        <span
+          className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded
+               bg-gray-800 px-2 py-1 text-xs text-white opacity-0 pointer-events-none
+               transition-opacity group-hover:opacity-100"
+        >
+          Toggle theme
+        </span>
       </div>
-      <div className="flex mx-auto items-center mt-2 justify-center mr-2">
+      <div className="hidden md:flex group relative  mx-auto items-center mt-2 justify-center mr-2">
         <Sun className="w-6 h-6 text-gray-800 mx-1" />
+        <span
+          className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded
+               bg-gray-800 px-2 py-1 text-xs text-white opacity-0 pointer-events-none
+               transition-opacity group-hover:opacity-100"
+        >
+          Toggle theme
+        </span>
       </div>
     </div>
   );

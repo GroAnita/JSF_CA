@@ -2,6 +2,7 @@ import { getProductById } from "@/utils/api";
 //import { Review } from "@/types/product";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductImage from "@/components/ProductImage";
+import Link from "next/link";
 
 export default async function ProductDetail({
   params,
@@ -16,6 +17,9 @@ export default async function ProductDetail({
 
   return (
     <main className="flex flex-col mx-auto p-4">
+      <Link href="/">
+        <p className="text-gray-800 text-sm font-semibold">Back to products</p>
+      </Link>
       <section className="flex flex-col md:flex-row mx-auto p-4">
         <div>
           <ProductImage

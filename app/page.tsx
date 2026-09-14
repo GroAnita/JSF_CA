@@ -6,7 +6,7 @@ export default async function Home() {
   const products = await getProducts();
 
   return (
-    <main className="container mx-auto py-8">
+    <main className="container mx-auto py-4">
       <Search products={products} />
       <h1 className="text-3xl font-bold font-heading mb-4 ml-2">Products</h1>
       <p className="text-sm font-body font-bold ml-2">
