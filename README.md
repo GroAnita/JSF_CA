@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Everything Store
 
-## Getting Started
+An e-commerce frontend built as a school project at Noroff using Next.js, React, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+The project explores how to build an online shopping interface with product data from an API, product search, individual product pages, and a shopping cart.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Live demo:** [jsf-ca-black.vercel.app](https://jsf-ca-black.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## About the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The Everything Store was my introduction to working with Next.js. I built on my existing React experience while learning how to structure an application with the Next.js App Router.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is an educational storefront, not a commercial shop or a production payment system.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Product overview with images, descriptions, and prices
+- Product data fetched from an API
+- Contact page
+- Checkout page
+- Cart
+- Dynamic pages for individual products
+- Product search
+- Shopping cart functionality
+- Display of regular and discounted prices
+- Responsive product grid
+- Mobile navigation
+- Enlarged product image view
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Built with
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js** — application framework and routing
+- **React** — component-based user interface
+- **TypeScript** — types for application data and components
+- **Tailwind CSS** — styling and responsive layouts
+- **React Context** — shared shopping cart state
+- **Vercel** — deployment
+- **ESLint and Prettier** — code quality and formatting
 
-## Deploy on Vercel
+## Getting started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js compatible with the project's Next.js version
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/GroAnita/JSF_CA.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd JSF_CA
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

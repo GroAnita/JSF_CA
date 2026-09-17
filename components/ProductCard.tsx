@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Product } from "../types/product";
 import { ShoppingCart, PlusCircleIcon, MinusCircleIcon } from "lucide-react";
 import Link from "next/link";
+import AddToCartButton from "./AddToCartButton";
 
 export default function ProductCard({
   product,
@@ -46,18 +47,24 @@ export default function ProductCard({
           )}
         </section>
       </Link>
-      <div className="flex mt-auto mx-auto mb-0.5  text-blue-800">
-        <PlusCircleIcon className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1" />
-        <form className="inline-block">
-          <input
-            type="number"
-            min="1"
-            defaultValue="1"
-            className="w-16 text-center border-2 rounded-md text-gray-800"
-          />
-        </form>
-        <MinusCircleIcon className="ml-2 mt-1 inline-block w-5 h-5 text-blue-800" />
-        <ShoppingCart className="ml-2 inline-block w-7 h-7 " />
+      <div className="flex flex-col mt-auto mx-auto mb-0.5  text-blue-800">
+        <section>
+          <PlusCircleIcon className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1" />
+          <form className="inline-block">
+            <input
+              type="number"
+              min="1"
+              defaultValue="1"
+              className="w-16 text-center border-2 rounded-md text-gray-800 apperance-none"
+            />
+          </form>
+          <MinusCircleIcon className="ml-2 mt-1 inline-block w-5 h-5 text-blue-800" />
+        </section>
+        <section className="mx-auto">
+          <AddToCartButton product={product}>
+            <ShoppingCart className="w-4 h-4 "></ShoppingCart>
+          </AddToCartButton>
+        </section>
       </div>
       {tags && tags.length > 0 && (
         <section className="mt-4 flex gap-2 mx-auto">
