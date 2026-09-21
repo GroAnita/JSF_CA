@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function Header() {
   return (
-    <header className="bg-gray-100 text-background py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-gray-100 text-background py-4 flex items-center justify-between">
       <div className="container mx-auto flex flex-1 items-center justify-center"></div>
       <div
         className="container ml-2

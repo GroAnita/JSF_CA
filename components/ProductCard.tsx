@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
 import { Product } from "../types/product";
 import { ShoppingCart, PlusCircleIcon, MinusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
+import { useState } from "react";
 
 export default function ProductCard({
   product,
@@ -13,6 +15,7 @@ export default function ProductCard({
 }) {
   const tags = product.tags;
   const hasDiscount = product.discountedPrice !== product.price;
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full">
@@ -49,19 +52,26 @@ export default function ProductCard({
       </Link>
       <div className="flex flex-col mt-auto mx-auto mb-0.5  text-blue-800">
         <section>
-          <PlusCircleIcon className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1" />
+          <PlusCircleIcon
+            className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1"
+            onClick={() => setQuantity(quantity + 1)}
+          />
           <form className="inline-block">
             <input
               type="number"
               min="1"
-              defaultValue="1"
               className="w-16 text-center border-2 rounded-md text-gray-800 apperance-none"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
             />
           </form>
-          <MinusCircleIcon className="ml-2 mt-1 inline-block w-5 h-5 text-blue-800" />
+          <MinusCircleIcon
+            className="ml-2 mt-1 inline-block w-5 h-5 text-blue-800"
+            onClick={() => setQuantity((q) => Math.max(1, q - 1))} //to not let it go under 0
+          />
         </section>
         <section className="mx-auto">
-          <AddToCartButton product={product}>
+          <AddToCartButton product={product} quantity={quantity}>
             <ShoppingCart className="w-4 h-4 "></ShoppingCart>
           </AddToCartButton>
         </section>

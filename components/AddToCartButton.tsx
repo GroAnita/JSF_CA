@@ -4,10 +4,12 @@ import { Product } from "@/types/product";
 
 export default function AddToCartButton({
   product,
+  quantity = 1,
   className = "",
   children,
 }: {
   product: Product;
+  quantity?: number;
   className?: string;
   children?: React.ReactNode;
 }) {
@@ -15,7 +17,7 @@ export default function AddToCartButton({
 
   return (
     <button
-      onClick={() => addToCart(product)}
+      onClick={() => addToCart(product, quantity)}
       className={`mt-4 px-4 py-2 bg-blue-600 text-white rounded ${className}`}
     >
       {children ?? "Add to Cart"}
