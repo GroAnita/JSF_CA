@@ -12,7 +12,7 @@ export default async function Home() {
       <p className="text-sm font-body font-bold ml-2">
         Welcome to the products page. We have what you need WHEN you need it
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
         {products.map((product, index) => (
           <ProductCard
             key={product.id}

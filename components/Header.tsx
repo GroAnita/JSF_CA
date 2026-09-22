@@ -1,6 +1,8 @@
 import { Titan_One } from "next/font/google";
 import IconMenu from "@/components/IconMenu";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 const titan = Titan_One({
   subsets: ["latin"],
@@ -18,12 +20,13 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-gray-100 text-background py-4 flex items-center justify-between">
       <div className="container mx-auto flex flex-1 items-center justify-center"></div>
       <div
-        className="container ml-2
-             flex flex-col items-start justify-start"
+        className="
+             flex flex-row items-center justify-start"
       >
+        <Image src={logo} alt="Logo mascot" width={80} height={80} />
         <Link href="/">
           <h1
-            className={` ${titan.className} text-xl tracking-wide ml-2
+            className={` hidden md:block ${titan.className} text-xl tracking-wide ml-2
            text-gray-800`}
           >
             <span className="text-4xl"> T</span>HE{" "}

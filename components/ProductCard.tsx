@@ -31,29 +31,31 @@ export default function ProductCard({
         />
         <div className="p-4">
           <h2 className="text-medium font-semibold">{product.title}</h2>
-          <p className="text-gray-600 text-sm">{product.description}</p>
+          <p className="text-gray-600 text-sm line-clamp-1">
+            {product.description}
+          </p>
         </div>
         <section className="mt-1 flex flex-col gap-2 align-items-center items-center mx-auto">
           {hasDiscount ? (
             <>
-              <p className="text-amber-500 text-medium font-semibold">
-                Your Price NOK{product.discountedPrice}
+              <p className="text-amber-600 text-medium font-semibold">
+                Your Price {product.discountedPrice}kr
               </p>
               <span className="text-gray-800 text-sm font-light line-through">
-                Price: NOK{product.price}
+                {product.price}kr
               </span>
             </>
           ) : (
             <span className="text-gray-800 text-medium font-semibold">
-              Price: NOK{product.price}
+              {product.price}kr
             </span>
           )}
         </section>
       </Link>
-      <div className="flex flex-col mt-auto mx-auto mb-0.5  text-blue-800">
-        <section>
+      <div className="flex flex-col mt-auto mx-auto items-center mb-0.5  text-blue-800">
+        <section className="flex items-center justify-center gap-2">
           <PlusCircleIcon
-            className="mx-2 inline-block w-5 h-5 text-blue-800 mt-1"
+            className="mx-2 inline-block w-6 h-6 text-blue-800 mt-1"
             onClick={() => setQuantity(quantity + 1)}
           />
           <form className="inline-block">
@@ -66,13 +68,17 @@ export default function ProductCard({
             />
           </form>
           <MinusCircleIcon
-            className="ml-2 mt-1 inline-block w-5 h-5 text-blue-800"
+            className="ml-2 mt-1 inline-block w-6 h-6 text-blue-800"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))} //to not let it go under 0
           />
         </section>
         <section className="mx-auto">
-          <AddToCartButton product={product} quantity={quantity}>
-            <ShoppingCart className="w-4 h-4 "></ShoppingCart>
+          <AddToCartButton
+            product={product}
+            quantity={quantity}
+            className="w-32"
+          >
+            <ShoppingCart className="w-6 h-6 mx-auto"></ShoppingCart>
           </AddToCartButton>
         </section>
       </div>

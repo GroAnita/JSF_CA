@@ -21,14 +21,14 @@ export default function Cart() {
   }
 
   return (
-    <main className="p-4 w-2/3  mx-auto">
+    <main className="p-4 w-full md:w-2/3  mx-auto">
       <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
 
       <div className="flex flex-col gap-4">
         {items.map((item) => (
           <div
             key={item.product.id}
-            className="flex flex-row gap-4  align-middle justify-center border-b border-gray-200 p-4 bg-white h-32"
+            className="flex flex-row gap-4 rounded-md align-middle justify-center border-b border-gray-200 p-4 bg-white h-full"
           >
             <Image
               src={item.product.image.url}
