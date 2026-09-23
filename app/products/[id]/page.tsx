@@ -31,9 +31,11 @@ export default async function ProductDetail({
     .slice(0, 4);
 
   return (
-    <main className="flex flex-col mx-auto p-4 w-2/3">
+    <main className="flex flex-col mx-auto p-4 w-2/3 text-background">
       <Link href="/">
-        <p className="text-gray-600 text-sm font-semibold">Back to products</p>
+        <p className="text-gray-600 dark:text-blue-200 text-sm font-semibold">
+          Back to products
+        </p>
       </Link>
       <section className="flex flex-col md:flex-row mx-auto p-4">
         <div className="relative">
@@ -42,7 +44,7 @@ export default async function ProductDetail({
             alt={product.image.alt || product.title}
           />
           {hasDiscount && (
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+            <span className="absolute top-3 left-1 bg-green-700 text-white text-xs font-bold px-2 py-1 rounded rotate-45">
               -{discountPercentage}%
             </span>
           )}
@@ -55,10 +57,10 @@ export default async function ProductDetail({
           )}
         </div>
         <div className="p-4 flex-1 flex-col mx-auto">
-          <h2 className="text-lg font-regular text-gray-600 mb-2">
+          <h2 className="text-lg font-regular text-gray-600 dark:text-gray-100 mb-2">
             {product.title}
           </h2>
-          <p className="text-gray-800 text-lg font-semibold">
+          <p className="text-gray-800 dark:text-gray-100 text-lg font-semibold">
             {product.description}
           </p>
 
@@ -68,12 +70,12 @@ export default async function ProductDetail({
                 <p className="text-amber-500 text-medium font-semibold mt-1">
                   Your Price NOK{product.discountedPrice}
                 </p>
-                <span className="text-gray-800 font-small font-light line-through">
+                <span className="text-gray-800 dark:text-gray-100 font-small font-light line-through">
                   Price: NOK{product.price}
                 </span>
               </>
             ) : (
-              <span className="text-gray-800 font-medium">
+              <span className="text-gray-800 dark:text-gray-100 font-medium">
                 Price: NOK{product.price}
               </span>
             )}
@@ -85,18 +87,24 @@ export default async function ProductDetail({
         </div>
       </section>
       <div className="mt-4">
-        <hr className="mt-4 border-blue-800" />
+        <hr className="mt-4 border-blue-800 dark:border-blue-200" />
         {reviews && reviews.length > 0 && (
           <section className="mt-4">
-            <h3 className="text-lg font-semibold text-gray-800">Reviews</h3>
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+              Reviews
+            </h3>
             <ul className="mt-2">
               {reviews.map((review) => (
                 <li key={review.id} className="border-b border-gray-200 py-2">
                   <p className="text-amber-500 font-semibold text-sm">
                     {review.rating} / 5
                   </p>
-                  <p className="text-gray-800 font-medium">{review.username}</p>
-                  <p className="text-gray-600">{review.description}</p>
+                  <p className="text-gray-800 dark:text-gray-100 font-medium">
+                    {review.username}
+                  </p>
+                  <p className="text-gray-600 dark:text-white">
+                    {review.description}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -107,11 +115,11 @@ export default async function ProductDetail({
       tags */}
       {relatedProducts.length > 0 && (
         <div className="mt-8">
-          <hr className="mb-4 border-blue-800" />
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+          <hr className="mb-4 border-blue-800 dark:border-blue-200" />
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
             You might also like
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {relatedProducts.map((relatedProduct) => (
               <ProductCard key={relatedProduct.id} product={relatedProduct} />
             ))}

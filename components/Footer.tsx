@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-//import Link from "next/link";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -18,25 +18,25 @@ export default function Footer() {
         <div className="container mx-auto mt-4 flex items-center justify-center">
           <ul className="flex space-x-4">
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="/" className="hover:text-gray-400">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="#" className="hover:text-gray-400">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="/contact" className="hover:text-gray-400">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
         <div className="container flex flex-1 items-center justify-center mt-4">
           <p className="text-sm">
-            &copy; 2024 The Everything store. All rights reserved.
+            &copy; 2026 The Everything store. All rights reserved.
           </p>
         </div>
       </header>

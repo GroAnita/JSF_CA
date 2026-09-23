@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-gray-100 text-background py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-gray-100 dark:bg-gray-800  py-4 flex items-center justify-between">
       <div className="container mx-auto flex flex-1 items-center justify-center"></div>
       <div
         className="
@@ -33,7 +33,7 @@ export default function Header() {
         <Link href="/">
           <h1
             className={` hidden md:block ${titan.className} text-xl tracking-wide ml-2
-           text-gray-800`}
+           text-gray-800 dark:text-white`}
           >
             <span className="text-4xl"> T</span>HE{" "}
             <span className="text-4xl"> E</span>VERYTHING{" "}

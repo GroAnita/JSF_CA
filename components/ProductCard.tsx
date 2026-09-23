@@ -41,7 +41,9 @@ export default function ProductCard({
           )}
         </div>
         <div className="p-4">
-          <h2 className="text-medium font-semibold">{product.title}</h2>
+          <h2 className="text-medium text-background font-semibold">
+            {product.title}
+          </h2>
           <p className="text-gray-600 text-sm line-clamp-1">
             {product.description}
           </p>
