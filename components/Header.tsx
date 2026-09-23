@@ -23,7 +23,13 @@ export default function Header() {
         className="
              flex flex-row items-center justify-start"
       >
-        <Image src={logo} alt="Logo mascot" width={80} height={80} />
+        <Image
+          src={logo}
+          alt="Logo mascot"
+          width={80}
+          height={80}
+          loading="eager"
+        />
         <Link href="/">
           <h1
             className={` hidden md:block ${titan.className} text-xl tracking-wide ml-2

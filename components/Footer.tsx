@@ -1,4 +1,5 @@
 import Image from "next/image";
+import logo from "@/public/logo.png";
 
 export default function Footer() {
   return (
@@ -6,11 +7,11 @@ export default function Footer() {
       <header className="bg-blue-900 text-white py-4 flex flex-col items-center justify-between">
         <div className="container mx-auto flex flex-1 items-center justify-center">
           <Image
-            src="/globe.svg"
+            src={logo}
             alt="Logo"
-            width={32}
-            height={32}
-            className="h-8 w-8 ml-2"
+            width={96}
+            height={96}
+            className="h-24 w-24 ml-2"
           />
         </div>
         <div className="container mx-auto mt-4 flex items-center justify-center">

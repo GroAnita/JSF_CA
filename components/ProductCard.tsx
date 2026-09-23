@@ -5,6 +5,7 @@ import { ShoppingCart, PlusCircleIcon, MinusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
+import TagBadge from "./tagBadge";
 
 export default function ProductCard({
   product,
@@ -16,19 +17,29 @@ export default function ProductCard({
   const tags = product.tags;
   const hasDiscount = product.discountedPrice !== product.price;
   const [quantity, setQuantity] = useState(1);
+  const discountPercentage = Math.round(
+    ((product.price - product.discountedPrice) / product.price) * 100
+  );
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full">
       <Link href={`/products/${product.id}`}>
-        <Image
-          src={product.image.url}
-          alt={product.image.alt || product.title}
-          width={300}
-          height={200}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          loading={priority ? "eager" : "lazy"}
-          className="w-full h-48 object-cover"
-        />
+        <div className="relative">
+          <Image
+            src={product.image.url}
+            alt={product.image.alt || product.title}
+            width={300}
+            height={200}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            loading={priority ? "eager" : "lazy"}
+            className="w-full h-48 object-cover"
+          />
+          {hasDiscount && (
+            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+              -{discountPercentage}%
+            </span>
+          )}
+        </div>
         <div className="p-4">
           <h2 className="text-medium font-semibold">{product.title}</h2>
           <p className="text-gray-600 text-sm line-clamp-1">
@@ -82,13 +93,11 @@ export default function ProductCard({
           </AddToCartButton>
         </section>
       </div>
+
       {tags && tags.length > 0 && (
-        <section className="mt-4 flex gap-2 mx-auto">
-          <span className="text-gray-500 text-xs">Tags:</span>
+        <section className="p-1 flex gap-2 mx-auto">
           {tags.map((tag) => (
-            <span key={tag} className="text-gray-800 text-xs">
-              {tag}
-            </span>
+            <TagBadge key={tag} tag={tag} />
           ))}
         </section>
       )}

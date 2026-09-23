@@ -3,6 +3,7 @@ import { getProductById } from "@/utils/api";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductImage from "@/components/ProductImage";
 import Link from "next/link";
+import TagBadge from "@/components/tagBadge";
 
 export default async function ProductDetail({
   params,
@@ -14,18 +15,33 @@ export default async function ProductDetail({
   const reviews = product.reviews;
   const tags = product.tags;
   const hasDiscount = product.discountedPrice !== product.price;
+  const discountPercentage = Math.round(
+    ((product.price - product.discountedPrice) / product.price) * 100
+  );
 
   return (
-    <main className="flex flex-col mx-auto p-4">
+    <main className="flex flex-col mx-auto p-4 w-2/3">
       <Link href="/">
         <p className="text-gray-800 text-sm font-semibold">Back to products</p>
       </Link>
       <section className="flex flex-col md:flex-row mx-auto p-4">
-        <div>
+        <div className="relative">
           <ProductImage
             url={product.image.url}
             alt={product.image.alt || product.title}
           />
+          {hasDiscount && (
+            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+              -{discountPercentage}%
+            </span>
+          )}
+          {tags && tags.length > 0 && (
+            <section className="mt-4 flex gap-2">
+              {tags.map((tag) => (
+                <TagBadge key={tag} tag={tag} />
+              ))}
+            </section>
+          )}
         </div>
         <div className="p-4 flex-1 flex-col mx-auto">
           <h2 className="text-lg font-regular text-gray-600 mb-2">
@@ -35,7 +51,7 @@ export default async function ProductDetail({
             {product.description}
           </p>
 
-          <section className="mt-4 flex flex-col md:flex-row gap-2 align-items-center items-center">
+          <section className="mt-4 flex flex-col gap-2 align-items-center items-center">
             {hasDiscount ? (
               <>
                 <p className="text-amber-500 text-medium font-semibold mt-1">
@@ -52,16 +68,6 @@ export default async function ProductDetail({
             )}
           </section>
 
-          {tags && tags.length > 0 && (
-            <section className="mt-4 flex gap-2">
-              <span className="text-gray-500 text-sm">Tags:</span>
-              {tags.map((tag) => (
-                <span key={tag} className="text-gray-800 font-medium">
-                  {tag}
-                </span>
-              ))}
-            </section>
-          )}
           <section className="flex justify-center md:justify-start">
             <AddToCartButton product={product} />
           </section>

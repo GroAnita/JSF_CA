@@ -27,7 +27,7 @@ export default function ProductImage({
         alt={alt}
         width={300}
         height={200}
-        className="mx-auto h-50 w-50 md:h-100 md:w-100 object-cover"
+        className="mx-auto h-50 w-50 md:h-100 md:w-100 object-cover rounded-lg"
         onClick={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
