@@ -30,12 +30,12 @@ export default function ProductCard({
             alt={product.image.alt || product.title}
             width={300}
             height={200}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             loading={priority ? "eager" : "lazy"}
             className="w-full h-48 object-cover"
           />
           {hasDiscount && (
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+            <span className="absolute top-3 left-1 bg-green-700 text-white text-xs font-bold px-2 py-1 rounded rotate-45">
               -{discountPercentage}%
             </span>
           )}

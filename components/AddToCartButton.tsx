@@ -18,7 +18,7 @@ export default function AddToCartButton({
   return (
     <button
       onClick={() => addToCart(product, quantity)}
-      className={`mt-4 px-4 py-2 bg-blue-600 text-white rounded ${className}`}
+      className={`mt-4 px-4 py-1 bg-blue-600 text-white rounded ${className}`}
     >
       {children ?? "Add to Cart"}
     </button>

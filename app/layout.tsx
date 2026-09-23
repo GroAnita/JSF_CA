@@ -8,7 +8,7 @@ import { CartProvider } from "@/context/CartContext";
 
 const heading = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["700"],
   variable: "--font-heading",
 });
 

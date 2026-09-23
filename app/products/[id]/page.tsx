@@ -1,7 +1,8 @@
-import { getProductById } from "@/utils/api";
+import { getProductById, getProducts } from "@/utils/api";
 //import { Review } from "@/types/product";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductImage from "@/components/ProductImage";
+import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import TagBadge from "@/components/tagBadge";
 
@@ -19,10 +20,20 @@ export default async function ProductDetail({
     ((product.price - product.discountedPrice) / product.price) * 100
   );
 
+  const allProducts = await getProducts();
+  /** Shows any products related to the current product by using the shared tags */
+  const relatedProducts = allProducts
+    .filter(
+      (candidate) =>
+        candidate.id !== product.id &&
+        candidate.tags?.some((tag) => tags?.includes(tag))
+    )
+    .slice(0, 4);
+
   return (
     <main className="flex flex-col mx-auto p-4 w-2/3">
       <Link href="/">
-        <p className="text-gray-800 text-sm font-semibold">Back to products</p>
+        <p className="text-gray-600 text-sm font-semibold">Back to products</p>
       </Link>
       <section className="flex flex-col md:flex-row mx-auto p-4">
         <div className="relative">
@@ -73,7 +84,6 @@ export default async function ProductDetail({
           </section>
         </div>
       </section>
-
       <div className="mt-4">
         <hr className="mt-4 border-blue-800" />
         {reviews && reviews.length > 0 && (
@@ -93,6 +103,21 @@ export default async function ProductDetail({
           </section>
         )}
       </div>
+      {/** Shows any products related to the current product by using the shared
+      tags */}
+      {relatedProducts.length > 0 && (
+        <div className="mt-8">
+          <hr className="mb-4 border-blue-800" />
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            You might also like
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {relatedProducts.map((relatedProduct) => (
+              <ProductCard key={relatedProduct.id} product={relatedProduct} />
+            ))}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
