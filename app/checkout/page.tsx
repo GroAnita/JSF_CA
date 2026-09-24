@@ -12,7 +12,7 @@ export default function Checkout() {
   );
 
   return (
-    <div className="p-4 w-full md:w-2/3 mx-auto flex gap-2">
+    <div className="p-4 w-full md:w-2/3 mx-auto flex flex-col lg:flex-row gap-2">
       <section className="mb-4 flex flex-col">
         <h1 className="text-2xl font-bold mb-4">Checkout</h1>
         <div className="flex flex-col gap-4 bg-white p-4 rounded-lg">
@@ -65,7 +65,7 @@ export default function Checkout() {
               </div>
             ))}
           </div>
-          <p className="text-xl font-bold text-gray-800 dark:text-white">
+          <p className="text-xl font-bold text-gray-800 dark:text-gray-800">
             Total: NOK{total.toFixed(2)}
           </p>
         </div>
