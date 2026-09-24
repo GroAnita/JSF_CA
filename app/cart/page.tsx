@@ -60,7 +60,7 @@ export default function Cart() {
                   onChange={(e) =>
                     updateQuantity(item.product.id, Number(e.target.value))
                   }
-                  className="w-16 text-center border-2 rounded-md text-gray-800"
+                  className="w-16 text-center border-2 rounded-md text-gray-800 "
                 />
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function Cart() {
       </div>
 
       <div className="mt-6 flex flex-col items-end gap-4">
-        <p className="text-xl font-bold text-gray-800">
+        <p className="text-xl font-bold text-gray-800 dark:text-white">
           Total: NOK{total.toFixed(2)}
         </p>
         <Link

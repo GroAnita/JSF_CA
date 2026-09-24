@@ -41,9 +41,16 @@ export default function ProductCard({
           )}
         </div>
         <div className="p-4">
-          <h2 className="text-medium text-background font-semibold">
-            {product.title}
-          </h2>
+          <section className="flex flex-row justify-between">
+            <h2 className="text-medium text-gray-800 dark:text-gray-800 font-semibold">
+              {product.title}
+            </h2>
+            {product.rating > 0 && (
+              <p className="text-sm text-gray-600">
+                ⭐ {product.rating.toFixed(1)}
+              </p>
+            )}
+          </section>
           <p className="text-gray-600 text-sm line-clamp-1">
             {product.description}
           </p>

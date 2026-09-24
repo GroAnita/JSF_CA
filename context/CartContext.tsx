@@ -8,12 +8,14 @@ type CartContextType = {
   addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const clearCart = () => setItems([]);
 
   function addToCart(product: Product, quantity: number) {
     setItems((prev) => {
@@ -34,6 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       value={{
         items,
         addToCart,
+        clearCart,
         removeFromCart: (productId: string) => {
           setItems((prev) =>
             prev.filter((item) => item.product.id !== productId)

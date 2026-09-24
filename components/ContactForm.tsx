@@ -118,7 +118,9 @@ export default function ContactForm() {
           onClick={() => setShowSuccess(false)}
         >
           <div className="bg-blue-100 p-6 rounded-lg shadow-lg text-center">
-            <p className="text-lg font-semibold">Thank you for your message!</p>
+            <p className="text-gray-800 text-lg font-semibold">
+              Thank you for your message!
+            </p>
             <p className="text-gray-600 mt-2">You&apos;ll get a reply soon.</p>
           </div>
         </div>

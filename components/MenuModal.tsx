@@ -14,7 +14,7 @@ export default function MenuModal({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <div
-        className="bg-green-100 p-4 rounded w-2/3 h-2/3 flex flex-col"
+        className="bg-green-100 p-4 rounded w-full h-full flex flex-col"
         onClick={(event) => event.stopPropagation()}
       >
         <span className="flex justify-end">
