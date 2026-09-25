@@ -22,11 +22,7 @@ export default function Footer() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link href="#" className="hover:text-gray-400">
-                About
-              </Link>
-            </li>
+
             <li>
               <Link href="/contact" className="hover:text-gray-400">
                 Contact

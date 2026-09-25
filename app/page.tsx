@@ -2,6 +2,11 @@ import { getProducts } from "@/utils/api";
 import ProductCard from "@/components/ProductCard";
 import Search from "@/components/search";
 
+export const metadata = {
+  title: "The Everything Store",
+  description: "A shopping destination for everything you need",
+};
+
 export default async function Home({
   searchParams,
 }: {

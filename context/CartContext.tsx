@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { CartItem } from "@/types/cart";
 import { Product } from "@/types/product";
 
@@ -13,44 +13,60 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function saveCart(items: CartItem[]) {
+  localStorage.setItem("cart", JSON.stringify(items));
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const clearCart = () => setItems([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("cart");
+    if (stored) setItems(JSON.parse(stored));
+  }, []);
 
   function addToCart(product: Product, quantity: number) {
     setItems((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      return [...prev, { product, quantity }];
+      const next = existing
+        ? prev.map((item) =>
+            item.product.id === product.id
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          )
+        : [...prev, { product, quantity }];
+      saveCart(next);
+      return next;
     });
+  }
+
+  function removeFromCart(productId: string) {
+    setItems((prev) => {
+      const next = prev.filter((item) => item.product.id !== productId);
+      saveCart(next);
+      return next;
+    });
+  }
+
+  function updateQuantity(productId: string, quantity: number) {
+    if (quantity < 1) return;
+    setItems((prev) => {
+      const next = prev.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item
+      );
+      saveCart(next);
+      return next;
+    });
+  }
+
+  function clearCart() {
+    setItems([]);
+    saveCart([]);
   }
 
   return (
     <CartContext.Provider
-      value={{
-        items,
-        addToCart,
-        clearCart,
-        removeFromCart: (productId: string) => {
-          setItems((prev) =>
-            prev.filter((item) => item.product.id !== productId)
-          );
-        },
-        updateQuantity: (productId: string, quantity: number) => {
-          if (quantity < 1) return;
-          setItems((prev) =>
-            prev.map((item) =>
-              item.product.id === productId ? { ...item, quantity } : item
-            )
-          );
-        },
-      }}
+      value={{ items, addToCart, removeFromCart, updateQuantity, clearCart }}
     >
       {children}
     </CartContext.Provider>
